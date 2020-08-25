@@ -26,12 +26,11 @@ if !hasScreenRecordingPermission() {
 	exit(1)
 }
 
+var windowResults: [[String: Any]] = []
+
 for window in windows {
 	let windowOwnerPID = window[kCGWindowOwnerPID as String] as! Int
-
-	if windowOwnerPID != frontmostAppPID {
-		continue
-	}
+	let activeWindow = windowOwnerPID == frontmostAppPID
 
 	// Skip transparent windows, like with Chrome.
 	if (window[kCGWindowAlpha as String] as! Double) == 0 {
@@ -50,12 +49,13 @@ for window in windows {
 
 	// This can't fail as we're only dealing with apps.
 	let app = NSRunningApplication(processIdentifier: appPid)!
-	
+
 	let appName = window[kCGWindowOwnerName as String] as! String
 
 	var dict: [String: Any] = [
 		"title": window[kCGWindowName as String] as? String ?? "",
 		"id": window[kCGWindowNumber as String] as! Int,
+		"active": activeWindow,
 		"bounds": [
 			"x": bounds.origin.x,
 			"y": bounds.origin.y,
@@ -78,10 +78,7 @@ for window in windows {
 	{
 		dict["url"] = url
 	}
-
-	print(try! toJson(dict))
-	exit(0)
+	windowResults.append(dict)
 }
-
-print("null")
+print(try! toJson(windowResults))
 exit(0)

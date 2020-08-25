@@ -39,6 +39,8 @@ declare namespace activeWin {
 			height: number;
 		};
 
+		active: boolean;
+
 		/**
 		App that owns the window.
 		*/
@@ -133,6 +135,10 @@ declare const activeWin: {
 	```
 	*/
 	sync(): activeWin.Result | undefined;
+
+	allWindowsAsync(): Promise<Array<activeWin.Result> | undefined>;
+
+	allWindowsSync(): activeWin.Result[] | undefined;
 };
 
 export = activeWin;

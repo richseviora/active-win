@@ -31,3 +31,35 @@ module.exports.sync = () => {
 
 	throw new Error('macOS, Linux, and Windows only');
 };
+
+module.exports.allWindowsSync = () => {
+	if (process.platform === 'darwin') {
+		return require('./lib/macos').allWindowsSync();
+	}
+
+	if (process.platform === 'linux') {
+		return require('./lib/linux').allWindowsSync();
+	}
+
+	if (process.platform === 'win32') {
+		return require('./lib/windows').allWindowsSync();
+	}
+
+	throw new Error('macOS, Linux, and Windows only');
+};
+
+module.exports.allWindowsAsync = () => {
+	if (process.platform === 'darwin') {
+		return require('./lib/macos').allWindowsAsync();
+	}
+
+	if (process.platform === 'linux') {
+		return require('./lib/linux').allWindowsAsync();
+	}
+
+	if (process.platform === 'win32') {
+		return require('./lib/windows').allWindowsAsync();
+	}
+
+	throw new Error('macOS, Linux, and Windows only');
+};
