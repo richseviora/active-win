@@ -38,14 +38,14 @@ module.exports.allWindowsSync = () => {
 	}
 
 	if (process.platform === 'linux') {
-		return require('./lib/linux').allWindowsSync();
+		throw new Error("Not supported for Linux");
 	}
 
 	if (process.platform === 'win32') {
 		return require('./lib/windows').allWindowsSync();
 	}
 
-	throw new Error('macOS, Linux, and Windows only');
+	throw new Error('macOS and Windows only');
 };
 
 module.exports.allWindowsAsync = () => {
@@ -54,12 +54,12 @@ module.exports.allWindowsAsync = () => {
 	}
 
 	if (process.platform === 'linux') {
-		return require('./lib/linux').allWindowsAsync();
+		throw new Error("Not supported for Linux");
 	}
 
 	if (process.platform === 'win32') {
 		return require('./lib/windows').allWindowsAsync();
 	}
 
-	throw new Error('macOS, Linux, and Windows only');
+	throw new Error('macOS and Windows only');
 };
