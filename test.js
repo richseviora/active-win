@@ -18,18 +18,18 @@ function arrayAsserter(t, result) {
 	asserter(t, firstResult);
 }
 
-test('async', async t => {
+test('async', async (t) => {
 	asserter(t, await activeWin());
 });
 
-test('sync', t => {
+test('sync', (t) => {
 	asserter(t, activeWin.sync());
 });
 
-test('allWindowsAsync', async t => {
+test('allWindowsAsync', async (t) => {
 	arrayAsserter(t, await activeWin.allWindowsAsync());
 });
 
-test('allWindowsSync', t => {
+test('allWindowsSync', (t) => {
 	arrayAsserter(t, activeWin.allWindowsSync());
 });

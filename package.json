@@ -13,8 +13,11 @@
 	"engines": {
 		"node": ">=8"
 	},
+	"xo": {
+		"prettier": true
+	},
 	"scripts": {
-		"test": "xo && ava && tsd",
+		"test": "ava && xo && tsd",
 		"build": "swift build --configuration=release && mv .build/release/active-win main",
 		"prepublishOnly": "npm run build"
 	},
@@ -55,6 +58,7 @@
 	],
 	"devDependencies": {
 		"ava": "^2.4.0",
+		"prettier": "^2.1.1",
 		"tsd": "^0.10.0",
 		"xo": "^0.25.3"
 	},
