@@ -22,12 +22,6 @@
 		"postinstall": "swift build --configuration=release && mv .build/release/active-win main",
 		"prepublishOnly": "npm run build"
 	},
-	"files": [
-		"index.js",
-		"index.d.ts",
-		"lib",
-		"main"
-	],
 	"keywords": [
 		"macos",
 		"linux",
